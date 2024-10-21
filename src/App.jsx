@@ -7,7 +7,7 @@ import Landing from './components/Landing/Landing';
 import Dashboard from './components/Dashboard/Dashboard';
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({username: "Marquise"});
 
   return (
     <>
