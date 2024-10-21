@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { signup } from "../services/authService.js";
 
 function SignupForm({ setUser }) {
   const [message, setMessage] = useState("");
@@ -27,8 +28,15 @@ function SignupForm({ setUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (formData.password !== formData.passwordConf) {
+      updateMessage("Passwords do not match");
+      return;
+    }
+
     try {
-      setUser(formData);
+      const userResponse = await signup(formData);
+      // localStorage.setItem("token", userResponse.token)
+      setUser(userResponse.user);
       navigate("/");
     } catch (error) {
       updateMessage(error.message);

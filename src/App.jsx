@@ -2,29 +2,28 @@
 
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import NavBar from './components/NavBar/NavBar';
-import Landing from './components/Landing/Landing';
-import Dashboard from './components/Dashboard/Dashboard';
-import SignupForm from './components/SignUpForm/SignUpForm';
+import NavBar from './components/NavBar/NavBar.jsx';
+import Landing from './components/Landing/Landing.jsx';
+import Dashboard from './components/Dashboard/Dashboard.jsx';
+import SignupForm from './components/SignUpForm/SignUpForm.jsx';
 import './App.css';
 
-const App = () => {
-  const [user, setUser] = useState({username: "Marquise"});
+function App() {
+  const [user, setUser] = useState(null);
 
   return (
     <>
       <NavBar user={user} />
       <Routes>
-        { user ? (
+        {user ? (
           <Route path="/" element={<Dashboard user={user} />} />
         ) : (
           <Route path="/" element={<Landing />} />
         )}
-      
-      <Route path='/signup' element={<SignupForm  setUser={setUser}/>} />
+        <Route path="/signup" element={<SignupForm setUser={setUser}/>} />
       </Routes>
     </>
   );
-};
+}
 
 export default App;
