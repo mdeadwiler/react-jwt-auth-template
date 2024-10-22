@@ -1,7 +1,10 @@
-
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthedUserContext } from "../App.jsx";
 
-function NavBar({ user }) {
+function NavBar({ handleSignout }) {
+  const user = useContext(AuthedUserContext);
+
   const alwaysOption = (
     <>
       <li>
@@ -13,7 +16,9 @@ function NavBar({ user }) {
   const authorizedOptions = (
     <>
       <li>
-        <Link to="">Sign Out</Link>
+        <Link to="" onClick={handleSignout}>
+          Sign Out
+        </Link>
       </li>
     </>
   );
